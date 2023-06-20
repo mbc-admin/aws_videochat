@@ -1,0 +1,244 @@
+<html>
+  <head>
+  <script src="bundle.js"></script>
+  <script src="index.js"></script>
+    <style>
+        /*button {
+            margin: 2;
+        }
+        tr {
+            vertical-align: top;
+        }
+        video {
+            width: 100%;
+            background-color: black;
+        }
+        .mainTable {
+            width: 100%;
+        }
+        .localColumn {
+            width: 50%;
+        }
+        .remoteColumn {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        #localVideo {
+            width: 100%;
+        }
+        .remoteVideo {
+            float: left;
+        }
+
+        .videoWrap {
+            margin: 3;
+            !* padding: 5; *!
+            !* background-color: papayawhip; *!
+            display: flex;
+            justify-content: center;
+        }
+
+        @media only screen and (max-width: 1060px) {
+            .video {
+                width: 300px;
+            }
+        }
+
+        @media only screen and (max-width: 940px) {
+            .video {
+                width: 240px;
+            }
+        }*/
+        .body {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .local {
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+            width: 20%;
+            height: auto;
+        }
+
+        .videoLocal {
+            z-index: 9;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            max-width: 100%;
+            height: 200px;
+        }
+
+        .containerUserNameLocal {
+            position: absolute;
+            width: 100%;
+            color: #99bfe3;
+            background: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(0,0,0,0.5396533613445378) 33%, rgba(0,0,0,0.4920343137254902) 100%);
+        }
+
+        .userName {
+            margin-top: 5px;
+            margin-left: 10px;
+            color: #99bfe3;
+        }
+
+        .remotes {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .video1 {
+            display: flex;
+            flex-direction: row;
+            width: 100vw;
+            height: 100vh;
+            /*width: 100%;
+            height: auto;*/
+        }
+
+        .video2 {
+            display: flex;
+            flex-direction: row;
+            /*width: 100vw;
+            height: 100vh;*/
+            width: 100%;
+            height: auto;
+        }
+
+        .video4 {
+            display: flex;
+            flex-direction: row;
+            width: 50vw;
+            height: 100vh;
+            /*width: 100%;
+            height: auto;*/
+            /*overflow: hidden;*/
+        }
+
+        .video6 {
+            display: flex;
+            flex-direction: row;
+            /*width: 33vw;
+            height: 100vh;*/
+            width: 100%;
+            height: auto;
+            /*overflow: hidden;*/
+        }
+
+        .video8 {
+            display: flex;
+            flex-direction: row;
+            /*width: 50vw;
+            height: 50vh;*/
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .videoMultiple {
+            display: flex;
+            flex-direction: row;
+            width: 33vw;
+            height: 33vh;
+            overflow: hidden;
+        }
+
+        .containerControls {
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            bottom: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(0,0,0,0.5984768907563025) 33%, rgba(0,0,0,0.8085609243697479) 100%);
+        }
+
+        .containerCallOff {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            background-color: red;
+        }
+
+        .peer-data {
+            /*position: relative;
+            top: 0;
+            color: #FFFFFF;
+            margin-top: 10px;
+            margin-left: 10px;*/
+            position: absolute;
+            bottom: 0;
+            color: #FFFFFF;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+    </style>
+  </head>
+  <body class="body">
+      <div id="local" class="local">
+          <div class="containerUserNameLocal">
+              <span id="userName" class="userName"></span>
+          </div>
+          <video id="localVideo" autoplay playsinline class="videoLocal" muted="muted"></video>
+          <div class="containerControls">
+              <div id="containerVid" style="z-index: 9" onclick="console.log('video')">
+                  <img id="videoIcon" style="width: 30px; height: 30px;" src="assets/videoON.svg"/>
+              </div>
+
+              <div id="containerCallOff" style="z-index: 9" class="containerCallOff" onclick="console.log('hangout')">
+                  <img style="width: 30px; height: 30px;" src="assets/callOff.svg"/>
+              </div>
+
+              <div id="containerMicro" style="z-index: 9" onclick="console.log('micro')">
+                  <img id="microIcon" style="width: 30px; height: 30px;" src="assets/micOn.svg" />
+              </div>
+          </div>
+      </div>
+
+      <div id="videoContainer" class="remotes"></div>
+    <!--<body>
+        <div id="video">
+            <table class="mainTable">
+                <tbody>
+                    <tr>
+                        <td class="localColumn">
+                            <video id="localVideo" autoplay class="video" autoplay="true" muted="muted"></video>
+                            <span id="userName"></span>
+                        </td>
+                        <td class="remoteColumn">
+                            <div id="videoContainer"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>-->
+  </body>
+</html>
